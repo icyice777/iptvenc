@@ -19,6 +19,8 @@ jobs:
   iptvenc:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -35,4 +37,21 @@ jobs:
           iterations: ${{ secrets.ITERATIONS }}
           diggest: ${{ secrets.DIGGEST }}
         run: bash ./scripts/renew_iptv.sh
+
+      - name: Commit and push generated file
+        run: |
+          # 1. Configure the built-in GitHub Actions bot user
+          git config --local user.email "github-actions[bot]@://github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          # 2. Stage the specific file (replace with your file's name)
+          git add iptv.enc.m3u
+          
+          # 3. Commit only if there are changes to avoid workflow errors
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: automated file update [skip ci]"
+            git push
+          else
+            echo "No changes detected. Skipping commit."
+          fi
 
