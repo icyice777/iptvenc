@@ -52,6 +52,6 @@ jobs:
             git commit -m "chore: automated file update [skip ci]"
             git push
           else
-            echo "No changes detected. Skipping commit."
+            echo "::notice::No changes detected. Skipping commit."
           fi
 
