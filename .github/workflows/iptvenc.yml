@@ -27,5 +27,12 @@ jobs:
 
       # Runs a script file using the runners shell
       - name: Run the script file
+        env:
+          password: ${{ secrets.PASSWORD }}
+          algorithm: ${{ secrets.ALGORITHM }}
+          ivHex: ${{ secrets.IVHEX }}
+          saltHex: ${{ secrets.SALTHEX }}
+          iterations: ${{ secrets.ITERATIONS }}
+          diggest: ${{ secrets.DIGGEST }}
         run: bash ./scripts/renew_iptv.sh
 
