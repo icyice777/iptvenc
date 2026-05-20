@@ -1,2 +1,2 @@
 # iptvenc
-Encrypt IPTV .m3u file
+Renew and encrypt IPTV's .m3u file
