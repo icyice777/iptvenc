@@ -30,6 +30,13 @@ jobs:
       # Runs a script file using the runners shell
       - name: Run the script file
         env:
+          original_file: ${{ vars.ORIGINAL_FILE }}
+          smallest_file_size: ${{ vars.SMALLEST_FILE_SIZE }}
+          test_channel: ${{ vars.TEST_CHANNEL }}
+          temp_file: ${{ vars.TEMP_FILE }}
+          target_file: ${{ vars.TARGET_FILE }}
+          original_file_url: ${{ secrets.ORIGINAL_FILE_URL }}
+          ua: ${{ secrets.UA }}
           password: ${{ secrets.PASSWORD }}
           algorithm: ${{ secrets.ALGORITHM }}
           ivHex: ${{ secrets.IVHEX }}
@@ -45,7 +52,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
           
           # 2. Stage the specific file (replace with your file's name)
-          git add iptv.enc.m3u
+          git add ${{ vars.TARGET_FILE }}
           
           # 3. Commit only if there are changes to avoid workflow errors
           if ! git diff --cached --quiet; then
