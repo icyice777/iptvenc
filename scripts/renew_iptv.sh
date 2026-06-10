@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "::notice::Download $original_file"
-curl -4 -A "$ua" "$original_file_url" > $original_file
+curl -A "$ua" "$original_file_url" > $original_file
 
 if [ -e $original_file ]
 then
@@ -25,7 +25,7 @@ then
       rm $temp_file
    else
       echo "::warning::Either $original_file is smaller than $smallest_file_size or $test_channel was not found in $original_file, skip handling"
-      cat $original_file
+      head -n 100 $original_file
       exit 1
    fi
    echo "::notice::Rmove $original_file"
