@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "::notice::Download $original_file"
-curl -v -m 30 --connect-timeout 10 -A "$ua" "$original_file_url" > $original_file
+curl -4 -A "$ua" "$original_file_url" > $original_file
 
 if [ -e $original_file ]
 then
