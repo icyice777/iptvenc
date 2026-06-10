@@ -6,7 +6,7 @@ name: IPTV m3u encryption
 on:
   # Triggers the workflow on schedule
   schedule:
-    - cron: '0 3 */2 * *'
+    - cron: '0 4 */5 * *'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
