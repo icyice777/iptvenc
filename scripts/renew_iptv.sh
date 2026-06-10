@@ -25,7 +25,7 @@ then
       rm $temp_file
    else
       echo "::warning::Either $original_file is smaller than $smallest_file_size or $test_channel was not found in $original_file, skip handling"
-      head -n 100 $original_file
+      cat $original_file
       exit 1
    fi
    echo "::notice::Rmove $original_file"
