@@ -25,6 +25,18 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
+      # Initialize the Free/Standard Cloudflare WARP client
+      - name: Set up WARP connection
+        uses: sebst/actions-warp@v1
+        with:
+          tos: YES # Required to accept the Cloudflare Terms of Service
+
+      # Verify the WARP proxy is actively running
+      - name: Verify WARP Status
+        run: |
+          echo "Checking network details via Cloudflare..."
+          curl https://cloudflare.com
+
       # Runs a script file using the runners shell
       - name: Run the script file
         env:
